@@ -21,8 +21,6 @@ import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.TouchScreen;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.codingzombies.easytest.config.Config;
-
 /**
  * @author <a href="ronald@codingzombies.com">Ron de Leon</a>
  */
@@ -34,7 +32,7 @@ public class DeviceWebDriver implements WebDriver, JavascriptExecutor, TakesScre
 
     public DeviceWebDriver(final WebDriver driver) {
         this.driver = driver;
-        this.driverWait = new WebDriverWait(driver, Config.getInt("componenttimeout", 30));
+        this.driverWait = new WebDriverWait(driver, 30);
         this.actions = new Actions(driver);
     }
 

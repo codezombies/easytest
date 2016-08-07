@@ -3,7 +3,6 @@ package com.codingzombies.easytest.drivers;
 import java.io.File;
 import java.net.URL;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -14,7 +13,6 @@ import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.safari.SafariDriver;
 
 import com.codingzombies.easytest.DeviceWebDriver;
-import com.codingzombies.easytest.config.Config;
 import com.codingzombies.easytest.config.DriverType;
 
 import net.anthavio.phanbedder.Phanbedder;
@@ -66,10 +64,9 @@ public final class DriverFactory {
     }
 
     private static void initializeChromeVariables() {
-        final String environment = StringUtils.lowerCase(Config.get("environment", environment()));
         final URL resource = DriverFactory.class.getClassLoader().getResource("drivers");
-        final String chromeExecutableFolder = resource.getPath() + File.separator + environment;
-        if (environment.equals("windows")) {
+        final String chromeExecutableFolder = resource.getPath() + File.separator + environment();
+        if (environment().equals("windows")) {
             System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, chromeExecutableFolder + File.separator + "chromedriver.exe");
         }
         else {
