@@ -143,15 +143,18 @@ public class ActionableElement {
     }
 
     public WebElement getRaw(final String selector) {
+        driverWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy($by(selector)));
         return $(context, selector);
     }
     
     public WebElement get(final String selector) {
+        driverWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy($by(selector)));
         return $(context, selector, (e) -> e.isDisplayed() && e.isEnabled());
     }
 
     // use for multiple elements on a selector
     public WebElement get(final String selector, final int index) {
+        driverWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy($by(selector)));
         final List<WebElement> list = getList(selector);
         if(index >= list.size()) {
             System.err.println("List content: ");
@@ -163,6 +166,7 @@ public class ActionableElement {
     
     // use for multiple elements on a selector
     public List<WebElement> getList(final String selector) {
+        driverWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy($by(selector)));
         return $$(context, selector);
     }
 }

@@ -22,7 +22,8 @@ public class EasyTest implements AutoCloseable {
     private final WebDriverWait2 driverWait;
     private final DeviceWebDriver driver;
     private final EasyTestOptions options;
-
+    private boolean firstPageLoaded = false;
+    
     public EasyTest(final WebDriver driver) {
         this(driver, new EasyTestOptions());
     }
@@ -83,11 +84,17 @@ public class EasyTest implements AutoCloseable {
     }
 
     private void waitForPageToLoad() {
+        if(!firstPageLoaded) {
+            // we don't care about the staleness of body during first page loaded on the browser
+            firstPageLoaded = true;
+            return;
+        }
         final WebElement body = driver.findElement(By.tagName("body"));
 
         // calling the first newPage with waitForPageToLoad() will fail because
         // body will never become stale
         runQuietly(() -> {
+            driverWait.until(Conditions.pageLoaded());
             new WebDriverWait2(driver, 5).until(ExpectedConditions.stalenessOf(body));
         });
     }
