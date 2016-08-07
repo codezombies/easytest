@@ -74,6 +74,7 @@ public class ActionableElement {
 
     public WebElement typeText(final String selector, final CharSequence value) {
         final WebElement element = get(selector);
+        element.clear();
         element.sendKeys(value);
         logger.logItems(space, "typing value: " + value);
         return element;
