@@ -17,8 +17,10 @@ public class FindMyFareTest {
             // homepage
             easy.newPage(page -> {
                
-                page.typeText("#from_1", "Auckland, New Zealand (AKL)");
-                page.typeText("#to_1", "Colombo, Sri Lanka (CMB)");
+                page.typeTextAndEnter("#from_1", "Auckland, New Zealand (AKL)");
+                page.typeTextAndEnter("#to_1", "Colombo, Sri Lanka (CMB)");
+                
+                page.click("#trip_types");
                 
                 // click from date slector and select 20th
                 page.click("#date_1");

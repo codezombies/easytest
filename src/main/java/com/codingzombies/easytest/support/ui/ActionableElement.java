@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -77,6 +78,15 @@ public class ActionableElement {
         final WebElement element = get(selector);
         element.clear();
         element.sendKeys(value);
+        logger.logItems(space, "typing value: " + value);
+        return element;
+    }
+
+    public WebElement typeTextAndEnter(final String selector, final CharSequence value) {
+        final WebElement element = get(selector);
+        element.clear();
+        element.sendKeys(value);
+        element.sendKeys(Keys.ENTER);
         logger.logItems(space, "typing value: " + value);
         return element;
     }
