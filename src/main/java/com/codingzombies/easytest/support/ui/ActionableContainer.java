@@ -26,4 +26,9 @@ public class ActionableContainer extends ActionableElement {
         
         populator.execute(this, data);
     }
+    
+    public WebElement getElement() {
+        return (WebElement) context;
+    }
+
 }

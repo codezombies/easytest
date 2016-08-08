@@ -52,6 +52,10 @@ public class DeviceWebDriver implements WebDriver, JavascriptExecutor, TakesScre
         actions.moveToElement(element).build().perform();
     }
 
+    public void scrollTo(final WebElement element) {
+        executeScript("arguments[0].scrollIntoView()", element);
+    }
+
     /* delegated methods */
 
     @Override

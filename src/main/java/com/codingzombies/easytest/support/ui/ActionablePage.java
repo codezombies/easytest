@@ -1,6 +1,10 @@
 package com.codingzombies.easytest.support.ui;
 
 import static com.codingzombies.easytest.support.ui.Selectors.$;
+import static com.codingzombies.easytest.support.ui.Selectors.$by;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.codingzombies.easytest.EasyTest;
 
@@ -35,4 +39,14 @@ public class ActionablePage extends ActionableElement {
         
         populator.execute(new ActionableContainer(easy, get(containerSelector), 1), data);
     }
+
+    public WebElement waitForVisibleElement(final String selector) {
+        driverWait.until(ExpectedConditions.presenceOfElementLocated($by(selector)));
+        return driverWait.until(ExpectedConditions.visibilityOfElementLocated($by(selector)));
+    }
+
+    public void waitForInvisibleElement(final String selector) {
+        driverWait.until(ExpectedConditions.invisibilityOfElementLocated($by(selector)));
+    }
+
 }

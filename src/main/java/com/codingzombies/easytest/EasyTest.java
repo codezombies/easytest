@@ -94,9 +94,10 @@ public class EasyTest implements AutoCloseable {
         // calling the first newPage with waitForPageToLoad() will fail because
         // body will never become stale
         runQuietly(() -> {
-            driverWait.until(Conditions.pageLoaded());
             new WebDriverWait2(driver, 5).until(ExpectedConditions.stalenessOf(body));
         });
+        // wait for page load via js document.readyState
+        driverWait.until(Conditions.pageLoaded());
     }
 
     private void runQuietly(final SilentCall run) {

@@ -3,6 +3,8 @@ package com.codingzombies.easytest;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.codingzombies.easytest.loggers.Logger;
+import com.codingzombies.easytest.loggers.TestLogger;
 import com.codingzombies.easytest.support.ui.ActionableDataTemplate;
 import com.codingzombies.easytest.support.ui.ActionableTemplate;
 import com.codingzombies.easytest.support.ui.BrowserSize;
@@ -15,6 +17,7 @@ public class EasyTestOptions {
     private final Map<String, ActionableTemplate> actionTemplates = new HashMap<>();
     private final Map<String, ActionableDataTemplate<?>> actionDataTemplates = new HashMap<>();
     private BrowserSize browserSize = BrowserSize.MAXIMIZE;
+    private Logger logger = new TestLogger();
 
     public void addActionTemplate(final String key, final ActionableTemplate template) {
         this.actionTemplates.put(key, template);
@@ -46,6 +49,14 @@ public class EasyTestOptions {
 
     public void setBrowserSize(final BrowserSize browserSize) {
         this.browserSize = browserSize;
+    }
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public void setLogger(final Logger logger) {
+        this.logger = logger;
     }
 
 }
